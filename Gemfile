@@ -20,6 +20,8 @@ gem 'omniauth-github'
 # ORM
 # gem 'pg'
 gem 'sqlite3'
+gem 'mysql2'
+gem 'mysql'
 
 # Performance and Exception management
 # gem 'airbrake'

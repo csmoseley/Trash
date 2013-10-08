@@ -54,3 +54,9 @@ production:
   pool: 5
   username: postgres
   password:
+
+
+# facilitymanagement:
+#   adapter: mysql2
+#   database: test
+#   username: vagrant

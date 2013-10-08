@@ -2,6 +2,54 @@
 
   <%= title t('hello') %>
   <h1>TrashApp</h1>
+  
+<table class="table table-striped">
+  <thead>
+  <tr>
+        <th>id</th>
+        <th>company</th>
+        <th>material</th>
+        <th>pounds</th>
+        <th>revenue</th>
+      </tr>
+   </thead>
+      <tbody>
+  <%
+     @connection = ActiveRecord::Base.establish_connection(
+             :adapter => 'mysql2',
+             :host => 'localhost',
+             :database => 'test',
+             :username => 'vagrant'
+     )
+
+     @text = "newtext"
+
+     sql = 'SELECT * FROM Z_RECYCLING_TRANSACTIONS WHERE (TRANSACTIONID < 15000) and (material = "MSW by Contractor") limit 10'
+     @result = @connection.connection.execute(sql);
+     @result.each(:as => :hash) do |row| %>
+     
+      <tr>
+        <td><%= row['transactionid'] %></td>
+        <td><%= row['company'] %></td>
+        <td><%= row['material'] %></td>
+        <td><%= row['pounds'] %></td>
+        <td><%= row['revenue'] %></td>
+     </tr>
+     
+     <% 
+   end
+
+     #require 'Mysql'
+     #mysql = Mysql::Client.new(:host => 'localhost', :username => 'vagrant', :database => 'test')
+     #results = mysql.query("SELECT * FROM 'Z_RECYCLING_TRANSACTIONS'")
+
+
+
+  %>
+  </tbody>
+</table>
+
+
   <p class="lead muted">where things go.</p>
 
   <div class="row">
