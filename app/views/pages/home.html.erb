@@ -24,14 +24,13 @@
 
      @text = "newtext"
 
-     sql = 'SELECT * FROM Z_RECYCLING_TRANSACTIONS WHERE (TRANSACTIONID < 15000) and (material = "MSW by Contractor") limit 10'
+     sql = "SELECT * FROM Z_RECYCLING_TRANSACTIONS where material = 'MSW by Contractor'"
      @result = @connection.connection.execute(sql);
      @result.each(:as => :hash) do |row| %>
      
-      <tr>
-        <td><%= row['transactionid'] %></td>
-        <td><%= row['company'] %></td>
-        <td><%= row['material'] %></td>
+      Transaction.create("transactionid"=><%= row["transactionid"] %>, "company" => "<%= row["company"] %>", "ticketnumber" => "<%= row["ticketnumber"] %>", "transactioncost" => "<%= row["transactioncost"] %>", "revenue" => "<%= row["revenue"] %>", "pounds" => <%= row["pounds"] %>, "bin_code" => "<%= row["bin_code"] %>", "materials" => "<%= row["material"] %>", "notes" => "<%= row["notes"] %>", "capital_project" => "<%= row["capital_project"] %>", "transaction_date" => "<%= row["transaction_date"]%>")<br>
+        <td></td>
+        <td><%=  %></td>
         <td><%= row['pounds'] %></td>
         <td><%= row['revenue'] %></td>
      </tr>

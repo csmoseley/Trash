@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130415120603) do
+ActiveRecord::Schema.define(version: 20131008204816) do
 
   create_table "services", force: true do |t|
     t.integer  "user_id"
@@ -23,26 +23,27 @@ ActiveRecord::Schema.define(version: 20130415120603) do
 
   add_index "services", ["user_id"], name: "index_services_on_user_id"
 
+  create_table "transactions", force: true do |t|
+    t.integer  "transactionid"
+    t.string   "company"
+    t.string   "ticketnumber"
+    t.integer  "transactioncost"
+    t.integer  "revenue"
+    t.integer  "pounds"
+    t.string   "bin_code"
+    t.string   "materials"
+    t.string   "notes"
+    t.integer  "capital_project"
+    t.datetime "transaction_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "Z_RECYCLING_TRANSACTIONS", force: true do |t|
-    t.integer   "transactionid"
-    t.string   "company"
-    t.string "ticketnumber"
-    t.integer "TRANSACTIONCOST"
-    t.integer "revenue"
-    t.integer "pounds"
-    t.string "bin_code"
-    t.string "materials"
-    t.string "notes"
-    t.integer "capital_project"
-    t.datetime "transaction_date"
-  end
-  
 
 end
