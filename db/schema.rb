@@ -30,4 +30,19 @@ ActiveRecord::Schema.define(version: 20130415120603) do
     t.datetime "updated_at"
   end
 
+  create_table "Z_RECYCLING_TRANSACTIONS", force: true do |t|
+    t.integer   "transactionid"
+    t.string   "company"
+    t.string "ticketnumber"
+    t.integer "TRANSACTIONCOST"
+    t.integer "revenue"
+    t.integer "pounds"
+    t.string "bin_code"
+    t.string "materials"
+    t.string "notes"
+    t.integer "capital_project"
+    t.datetime "transaction_date"
+  end
+  
+
 end
