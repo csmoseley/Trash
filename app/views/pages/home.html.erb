@@ -1,0 +1,77 @@
+<div class="page-content inset">
+
+  <%= title t('hello') %>
+  <h1>TrashApp</h1>
+  
+<table class="table table-striped">
+  <thead>
+  <tr>
+        <th>id</th>
+        <th>company</th>
+        <th>material</th>
+        <th>pounds</th>
+        <th>revenue</th>
+      </tr>
+   </thead>
+      <tbody>
+  <%
+     @connection = ActiveRecord::Base.establish_connection(
+             :adapter => 'mysql2',
+             :host => 'localhost',
+             :database => 'test',
+             :username => 'vagrant'
+     )
+
+     @text = "newtext"
+
+     sql = "SELECT * FROM Z_RECYCLING_TRANSACTIONS where material = 'MSW by Contractor'"
+     @result = @connection.connection.execute(sql);
+     @result.each(:as => :hash) do |row| %>
+     
+      Transaction.create("transactionid"=><%= row["transactionid"] %>, "company" => "<%= row["company"] %>", "ticketnumber" => "<%= row["ticketnumber"] %>", "transactioncost" => "<%= row["transactioncost"] %>", "revenue" => "<%= row["revenue"] %>", "pounds" => <%= row["pounds"] %>, "bin_code" => "<%= row["bin_code"] %>", "materials" => "<%= row["material"] %>", "notes" => "<%= row["notes"] %>", "capital_project" => "<%= row["capital_project"] %>", "transaction_date" => "<%= row["transaction_date"]%>")<br>
+        <td></td>
+        <td><%=  %></td>
+        <td><%= row['pounds'] %></td>
+        <td><%= row['revenue'] %></td>
+     </tr>
+     
+     <% 
+   end
+
+     #require 'Mysql'
+     #mysql = Mysql::Client.new(:host => 'localhost', :username => 'vagrant', :database => 'test')
+     #results = mysql.query("SELECT * FROM 'Z_RECYCLING_TRANSACTIONS'")
+
+
+
+  %>
+  </tbody>
+</table>
+
+
+  <p class="lead muted">where things go.</p>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p class="lead">Hey look we can add a lot of stuff into these boxes. </p>
+    </div>
+    <div class="col-md-6">
+      <p class="well">Like this box.</p>
+    </div>
+    <div class="col-md-6">
+      <p class="well">But this one is cooler.</p>
+    </div>
+    <div class="col-md-4">
+      <p class="well">Or possibly this one.</p>
+    </div>
+    <div class="col-md-4">
+      <p class="well">And this one is cool too.</p>
+    </div>
+    <div class="col-md-4">
+      <p class="well">This one is cool because it's the last one!</p>
+    </div>
+  </div>
+</div>
+
+
+

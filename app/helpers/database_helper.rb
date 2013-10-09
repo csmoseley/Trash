@@ -1,0 +1,3 @@
+module DatabaseHelper
+
+end
